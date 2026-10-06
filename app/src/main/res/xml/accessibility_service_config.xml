@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  JARVIS uses the AccessibilityService for UI automation (tap/scroll/global actions) and for
+  reading the on-screen text when the user explicitly asks.
+
+  Scope is deliberately narrow:
+  - typeWindowStateChanged only. The previous typeAllMask + notificationTimeout=100 woke the
+    app tens of times per second while onAccessibilityEvent() did nothing at all.
+  - flagRetrieveInteractiveWindows removed: only rootInActiveWindow is ever read.
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/accessibility_service_desc"
+    android:summary="@string/accessibility_service_summary"
+    android:accessibilityEventTypes="typeWindowStateChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:notificationTimeout="1000"
+    android:accessibilityFlags="flagDefault|flagReportViewIds|flagIncludeNotImportantViews"
+    android:canRetrieveWindowContent="true"
+    android:canPerformGestures="true"
+    android:settingsActivity="com.example.MainActivity"
+    android:isAccessibilityTool="false" />

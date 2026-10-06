@@ -1,0 +1,6 @@
+{
+  "name": "JARVIS Mobile",
+  "description": "Voice AI assistant powered by Gemini Live with real-time multi-modal interaction and device control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

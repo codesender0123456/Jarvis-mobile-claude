@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JARVIS Mobile</string>
+    <string name="accessibility_service_summary">Screen navigation and on-screen reading for JARVIS</string>
+    <string name="accessibility_service_desc">Enables JARVIS assistant to automate screen navigation, read on-screen UI elements, and perform requested taps or gestures upon voice command.</string>
+    <string name="quick_tile_label">JARVIS Voice</string>
+    <string name="persistent_notification_channel">JARVIS Assistant Service</string>
+    <string name="persistent_notification_desc">Live voice listener and wake word monitoring</string>
+    <string name="alarms_channel">JARVIS Alarms and Reminders</string>
+</resources>

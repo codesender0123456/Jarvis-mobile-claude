@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   Data extraction rules for API 31 and above.
+
+   jarvis_secure_prefs holds the Gemini API key and is excluded from both cloud backup and
+   device transfer. See backup_rules.xml for the reasoning. The Room memory database is
+   deliberately left in: it is portable user content, and the app asks for the key again
+   on a new device.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="jarvis_secure_prefs.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="jarvis_secure_prefs.xml" />
+    </device-transfer>
+</data-extraction-rules>
