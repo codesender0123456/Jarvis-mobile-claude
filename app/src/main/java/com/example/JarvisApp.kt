@@ -49,9 +49,6 @@ import com.example.service.DailyBriefingWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import java.util.concurrent.TimeUnit
 
 /** Who started the conversation; UI-started sessions end with the screen, the others do not. */
 enum class SessionOrigin { UI, WAKE, TILE, OVERLAY }
@@ -187,8 +184,6 @@ class JarvisApp : Application() {
             if (!granted(android.Manifest.permission.CAMERA)) add("- The camera is unavailable: permission not granted.")
             if (!android.provider.Settings.System.canWrite(this)) add("- Changing brightness needs 'Modify system settings' access, which is not granted.")
             if (!com.example.service.NotificationGate.canPost(this)) add("- Notifications are off, so reminders and alerts cannot be shown.")
-        }.joinToString("\n")
-        }
             add("- You only see through inspect_visual_input; never describe what you have not been shown.")
         }.joinToString("\n")
     }
@@ -295,3 +290,4 @@ class JarvisApp : Application() {
     fun rescheduleDailyBriefing() {
         DailyBriefingWorker.scheduleDaily(this)
     }
+}
