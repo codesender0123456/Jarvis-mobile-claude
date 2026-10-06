@@ -12,6 +12,7 @@ import com.example.actions.impl.AccessibilityControlAction
 import com.example.actions.impl.AgentModeAction
 import com.example.actions.impl.AppLauncherAction
 import com.example.actions.impl.BrowserControlAction
+import com.example.actions.impl.BrightnessControlAction
 import com.example.actions.impl.CalendarActions
 import com.example.actions.impl.ClipboardAssistantAction
 import com.example.actions.impl.ContactsLookupAction
@@ -186,6 +187,8 @@ class JarvisApp : Application() {
             if (!granted(android.Manifest.permission.CAMERA)) add("- The camera is unavailable: permission not granted.")
             if (!android.provider.Settings.System.canWrite(this)) add("- Changing brightness needs 'Modify system settings' access, which is not granted.")
             if (!com.example.service.NotificationGate.canPost(this)) add("- Notifications are off, so reminders and alerts cannot be shown.")
+        }.joinToString("\n")
+        }
             add("- You only see through inspect_visual_input; never describe what you have not been shown.")
         }.joinToString("\n")
     }

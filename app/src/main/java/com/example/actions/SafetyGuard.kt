@@ -60,10 +60,11 @@ class SafetyGuard {
         synchronized(claimLock) {
             // A single slot means a second sensitive action in the same turn would silently
             // orphan the first. Explicitly reject the superseded request instead.
-            _pendingRequest.getAndUpdate { current ->
-                current?.onRejected?.invoke()
-                request
+            val current = _pendingRequest.value
+            if (current != null) {
+                current.onRejected.invoke()
             }
+            _pendingRequest.value = request
         }
 
         return "Confirmation required for $title. Please confirm on the device display."

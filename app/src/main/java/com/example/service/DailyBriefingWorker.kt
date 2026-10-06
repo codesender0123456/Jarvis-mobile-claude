@@ -6,18 +6,11 @@ import android.content.Context
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.example.R
-import com.example.memory.MemoryDatabase
-import com.example.memory.MemoryRepository
-import java.util.Calendar
-import java.util.concurrent.TimeUnit
 
 class DailyBriefingWorker(
-    appContext: Context,
+    val appContext: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(appContext, workerParams) {
 
@@ -54,7 +47,6 @@ class DailyBriefingWorker(
 
         val notification = NotificationCompat.Builder(appContext, channelId)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("JARVIS Morning Briefing")
             .setStyle(NotificationCompat.BigTextStyle().bigText(briefing))
             .setContentText(briefing)
             .setAutoCancel(true)

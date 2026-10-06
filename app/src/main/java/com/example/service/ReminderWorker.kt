@@ -10,13 +10,13 @@ import androidx.work.WorkerParameters
 import com.example.R
 
 class ReminderWorker(
-    appContext: Context,
+    val appContext: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(appContext, workerParams) {
 
     override suspend fun doWork(): Result {
         val reminderText = inputData.getString(KEY_REMINDER_TEXT) ?: DEFAULT_REMINDER_TEXT
-        if (!NotificationGate.canPost(applicationContext)) {
+        if (!NotificationGate.canPost(appContext)) {
             // Notifications are off: nothing can be shown, and retrying would only loop.
             Log.w("ReminderWorker", "Notifications disabled; reminder not shown")
             return Result.success()

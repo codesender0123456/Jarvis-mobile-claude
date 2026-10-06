@@ -114,10 +114,15 @@ class ScreenCaptureService : Service() {
                 }
             }, h)
 
-            display = proj.createVirtualDisplay(
-                "jarvis-screen", w, hgt, metrics.densityDpi,
-                DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, imageReader.surface, null, h
-            )
+            // Fix: use !! or safe call since projection is guaranteed non-null after the check above
+            display = if (projection != null) {
+                proj.createVirtualDisplay(
+                    "jarvis-screen", w, hgt, metrics.densityDpi,
+                    DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, imageReader.surface, null, h
+                )
+            } else {
+                null
+            }
             h.postDelayed({ stopCapture() }, MAX_DURATION_MS)
             vision.onScreenCaptureStarted()
         } catch (t: Throwable) {

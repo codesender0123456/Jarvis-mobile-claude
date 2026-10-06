@@ -70,7 +70,7 @@ fun ApiKeyDialog(
 
                 OutlinedTextField(
                     value = key,
-                    onValueChange = { key = it },
+                    onValueChange = { newKey: String -> key = newKey },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(64.dp),
